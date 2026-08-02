@@ -1,0 +1,87 @@
+(defcfg
+  concurrent-tap-hold yes
+  process-unmapped-keys yes
+)
+
+;; ───────────────────────────────────────────────────────────
+;;  PHYSICAL LAYOUT
+;; ───────────────────────────────────────────────────────────
+(defsrc
+caps
+w   l   r   b   z   ;   q   u   d   j
+s   h   n   t   ,   .   a   e   o   i
+f   m   v   c   /   g   p   x   k   y
+                spc
+)
+
+;; ───────────────────────────────────────────────────────────
+;;  ALIASES
+;; ───────────────────────────────────────────────────────────
+(defalias
+  ;; Work layer mods (QWERTY home row)
+  s (tap-hold 150 270 s lmeta)
+  h (tap-hold 150 270  h lalt)
+  n (tap-hold 150 270  n lctl)
+  t (tap-hold 150 270  t lsft)
+  a (tap-hold 150 270  a rsft)
+  e (tap-hold 150 270  e rctl)
+  o (tap-hold 150 270  o ralt)
+  i (tap-hold 150 270  i rmeta)
+
+
+  ;; Symbols (S- = Shift+key, US QWERTY; bare key where no shift needed)
+  lb [
+  rb ]
+  lc S-[
+  rc S-]
+  rp (tap-hold 150 270 S-0 lsft)
+  lp (tap-hold 150 270 S-9 lctl)
+  gt (tap-hold 150 270 S-. lalt)
+  lt (tap-hold 150 270 S-, lmeta)
+  semi ;
+  colon S-;
+  comma ,
+  dot .
+  slash /
+  eq =
+  plus S-=
+  minus -
+  undsco S--
+  ast S-8
+  amp S-7
+  excl S-1
+  quest S-/
+  at S-2
+  hash S-3
+  bkslash \
+  or S-\
+  pgup_(tap-hold 150 200 pgup home)
+  pgdn_(tap-hold 150 200 pgdn end)
+
+  ;; Layer switches
+  sw_layer1 (layer-while-held layer_1)
+
+
+)
+
+;; ───────────────────────────────────────────────────────────
+;;  WORK LAYER (QWERTY + mods)
+;; ───────────────────────────────────────────────────────────
+(deflayer work
+@sw_layer1
+_    _    _    _    _    _    _    _    _    _
+@s   @h   @n   @t    _    _    @a    @e    @o    @i
+_    _    _    _    _    _    _    _    _    _
+                      _
+)
+
+;; ───────────────────────────────────────────────────────────
+;;  NAV LAYER (hold CAPS/INS)
+;; ───────────────────────────────────────────────────────────
+(deflayer layer_1
+ _
+[    ]    @lc  @rc  _    @amp @ast up   @bkslash @or
+@lt  @gt  @lp  @rp  _    @eq  left down right bspc
+del  @hash @at  @excl esc  @plus @minus @undsco @pgup_ @pgdn_
+                         ret
+)

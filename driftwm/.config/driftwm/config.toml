@@ -1,0 +1,113 @@
+autostart = [ "noctalia" ]
+
+[env]
+# Force native Wayland for every toolkit
+ELECTRON_OZONE_PLATFORM_HINT = "wayland"
+QT_QPA_PLATFORM = "wayland"
+GDK_BACKEND = "wayland"
+MOZ_ENABLE_WAYLAND = "1"
+SDL_VIDEODRIVER = "wayland"
+CLUTTER_BACKEND = "wayland"
+_JAVA_AWT_WM_NONREPARENTING = "1"
+# NVIDIA tuning
+__GL_MaxFramesAllowed = "1"
+__GL_GSYNC_ALLOWED = "0"
+__GL_VRR_ALLOWED = "0"
+NVD_BACKEND = "direct"
+
+[input.keyboard]
+
+repeat_rate = 25        
+repeat_delay = 300      
+
+[input.mouse]
+
+accel_speed = 0.0        
+accel_profile = "flat"   
+
+[cursor]
+
+inactive_opacity = 0.02 
+
+[navigation]
+
+drift = 0.2             
+camera_speed = 0.2      
+                         
+[snap]
+
+enabled = true          
+gap = 12.0              
+distance = 24.0         
+break_force = 32.0      
+corners = false         
+        
+[effects]
+
+animation_speed = 0.3     
+animation_scale = 0.6     
+
+[background]
+
+type = "shader"
+path = "/usr/local/share/driftwm/wallpapers/static/dark_sea.glsl"
+mirror_tile = false
+transparent_shader = false
+cache_budget_mb = 264
+
+[keybindings]
+
+"mod+d" = "spawn noctalia msg panel-toggle launcher"
+"mod+t" = "exec ghostty"
+
+[mouse.on-window]
+
+"mod+left" = "move-window"
+"mod+shift+left" = "move-snapped-windows"
+"mod+right" = "resize-window"
+"mod+shift+right" = "resize-window-snapped"
+"mod+middle" = "fit-window"
+"mod+shift+middle" = "toggle-fullscreen"
+
+"alt+left" =          "none"
+"alt+shift+left" =    "none"
+"alt+right" =         "none"
+"alt+shift+right" =   "none"
+"alt+middle" =        "none"
+"alt+shift+middle" =  "none"
+
+[mouse.anywhere]
+
+"mod+left" = "pan-viewport"
+"mod+ctrl+left" = "center-nearest" 
+"mod+wheel-scroll" = "zoom"
+
+[output.outline]
+
+color = "#ffffff"        
+thickness = 3             
+opacity = 0.03            
+
+[[outputs]]
+
+name = "DP-2"
+scale = 1
+transform = "90"
+position = [0,-700]
+mode = "max"
+
+[[outputs]]
+
+name = "DP-3"
+scale = 1
+position = [1080,-1080]
+mode = "max"
+
+[[outputs]]
+
+name = "DP-4"
+scale = 1
+position = [1080,0]
+mode = "max"
+[backend]
+wait_for_frame_completion = true
