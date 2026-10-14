@@ -1,0 +1,72 @@
+;; Qwerty
+
+(defcfg
+  concurrent-tap-hold yes
+  process-unmapped-keys yes
+)
+
+(defsrc
+   caps \
+   q    w    e    r    t    y    u    i    o    p
+   a    s    d    f    g    h    j    k    l    ;
+   z    x    c    v    b    n    m    ,    .    /
+                       spc
+)
+
+(defalias
+
+  a (tap-hold 150 275 a lmeta)
+  s (tap-hold 150 275  s lalt)
+  d (tap-hold 150 275  d lctl)
+  f (tap-hold 150 275  f lsft)
+  j (tap-hold 150 275  j rsft)
+  k (tap-hold 150 275  k rctl)
+  l (tap-hold 150 275  l ralt)
+  ; (tap-hold 150 275  ; rmeta)
+
+  lb [
+  rb ]
+  lc S-[
+  rc S-]
+  rp (tap-hold 150 275 S-0 lsft)
+  lp (tap-hold 150 275 S-9 lctl)
+  gt (tap-hold 150 275 S-. lalt)
+  lt (tap-hold 150 275 S-, lmeta)
+  semi ;
+  colon S-;
+  comma ,
+  dot .
+  slash /
+  eq =
+  plus S-=
+  minus -
+  undsco S--
+  ast S-8
+  amp S-7
+  excl S-1
+  quest S-/
+  at S-2
+  hash S-3
+  bkslash \
+  or S-\
+  pgup_ (tap-hold 150 275 pgup home)
+  pgdn_ (tap-hold 150 275 pgdn end)
+
+  sw_layer1 (layer-while-held layer_1)
+)
+
+(deflayer work
+  @sw_layer1 caps
+   _    _    _    _    _    _    _    _    _    _
+   @a   @s   @d   @f   _    _    @j   @k   @l   @;
+   _    _    _    _    _    _    _    _    _    _
+                       _
+)
+
+(deflayer layer_1
+   _    caps
+   [    ]    @lc  @rc  _    @amp @ast up   @bkslash @or
+   @lt  @gt  @lp  @rp  _    @eq  left down right bspc
+   del  @hash @at  @excl esc  @plus @minus @undsco @pgup_ @pgdn_
+                       ret
+)

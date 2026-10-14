@@ -1,0 +1,72 @@
+;; Halmak
+
+(defcfg
+  concurrent-tap-hold yes
+  process-unmapped-keys yes
+)
+
+(defsrc
+   caps \
+   w     l     r     b     z     ;     q     u     d     j
+   s     h     n     t     ,     .     a     e     o     i
+   f     m     v     c     /     g     p     x     k     y
+                            spc
+)
+
+(defalias
+
+  s (tap-hold 150 200  s lmeta)
+  h (tap-hold 150 200  h lalt)
+  n (tap-hold 150 200  n lctl)
+  t (tap-hold 150 200  t lsft)
+  a (tap-hold 150 200  a rsft)
+  e (tap-hold 150 200  e rctl)
+  o (tap-hold 150 200  o ralt)
+  i (tap-hold 150 200  i rmeta)
+
+  lb [
+  rb ]
+  lc S-[
+  rc S-]
+  rp (tap-hold 150 200 S-0 lsft)
+  lp (tap-hold 150 200 S-9 lctl)
+  gt (tap-hold 150 200 S-. lalt)
+  lt (tap-hold 150 200 S-, lmeta)
+  semi ;
+  colon S-;
+  comma ,
+  dot .
+  slash /
+  eq =
+  plus S-=
+  minus -
+  undsco S--
+  ast S-8
+  amp S-7
+  excl S-1
+  quest S-/
+  at S-2
+  hash S-3
+  bkslash \
+  or S-\
+  pgup_ (tap-hold 150 200 pgup home)
+  pgdn_ (tap-hold 150 200 pgdn end)
+
+  sw_layer1 (layer-while-held layer_1)
+)
+
+(deflayer work
+  @sw_layer1 caps
+   _     _     _     _     _     _     _     _     _     _
+   @s    @h    @n    @t    _     _     @a    @e    @o    @i
+   _     _     _     _     _     _     _     _     _     _
+                            _
+)
+
+(deflayer layer_1
+    _    caps
+   [     ]     @lc   @rc   _     @amp  @ast  up    @bkslash @or
+   @lt   @gt   @lp   @rp   _     @eq   left  down  right bspc
+   del   @hash @at   @excl esc   @plus @minus @undsco @pgup_ @pgdn_
+                            ret
+)
